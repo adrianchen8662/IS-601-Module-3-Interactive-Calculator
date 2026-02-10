@@ -27,4 +27,4 @@ jobs:
       run: |
         coverage erase
         coverage run -m pytest -v
-        coverage report
+        coverage report --fail-under=100
