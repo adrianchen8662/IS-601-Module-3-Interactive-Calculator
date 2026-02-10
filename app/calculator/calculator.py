@@ -20,18 +20,20 @@ Usage:
   h / help              Show this help
   q / quit              Exit
 """
-
+# Define a type alias
 def parse_number(s: str) -> float:
     try:
         return float(s.replace(' ', ''))
     except ValueError:
         raise ValueError(f"Error: Not a valid number: '{s}'")
 
+# REPL Interface
 def calculator():
     result = None
     print(HELP_TEXT)
 
     while True:
+        # Show prompt with current result if available
         prompt = f"[{str(int(result) if result.is_integer() else result)}] > " if result is not None else "> "
         try:
             raw = input(prompt).strip()
@@ -68,7 +70,7 @@ def calculator():
                 print(f"= {str(int(result) if result.is_integer() else result)}")
             continue
         
-        # Regex to check valid expression
+        # Regex to check valid expression for input validation
         match = re.fullmatch(
             r'([+-]?\s*\d+(?:\.\d+)?)\s*([+\-*/])\s*([+-]?\s*\d+(?:\.\d+)?)'
             r'|([+\-*/])\s*([+-]?\s*\d+(?:\.\d+)?)',
